@@ -9,7 +9,6 @@ export default {
     ],
   },
   moduleNameMapper: {
-    "./vendors.json": "<rootDir>/__mocks__/vendors.json",
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
     "\\.(png|jpe?g|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
   },
