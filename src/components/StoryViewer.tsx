@@ -85,7 +85,10 @@ function StoryViewer({
         activeIndex={activeIndex}
         onNext={handleNext}
       />
-      <div className="p-2 flex justify-between items-center">
+      <div
+        className="p-2 flex justify-between items-center"
+        data-testid={`story-view-${activeIndex}`}
+      >
         <div className="h-8 flex gap-2 items-center text-xs">
           <img
             src={story.profilePic}
@@ -104,17 +107,23 @@ function StoryViewer({
               <Star fill="#fff" strokeWidth={0} className="h-4 w-4" />
             </div>
           )}
-          <button onClick={onClose} className="p-1 cursor-pointer">
+          <button
+            onClick={onClose}
+            data-testid="close-story"
+            className="p-1 cursor-pointer"
+          >
             <X />
           </button>
         </div>
       </div>
       <div
         className="absolute top-16 left-0 w-1/2 h-full z-40"
+        data-testid="prev-story"
         onClick={handlePrev}
       />
       <div
         className="absolute top-16 right-0 w-1/2 h-full z-40"
+        data-testid="next-story"
         onClick={handleNext}
       />
     </motion.div>
