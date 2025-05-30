@@ -1,9 +1,10 @@
 export interface IUserStory {
   username: string;
-  isClose: boolean;
-  hasWatched: boolean;
+  isClose?: boolean;
+  hasWatched?: boolean;
   profilePic: string;
-  stories: Array<{
+  stories?: Array<{
     src: string;
+    time: string;
   }>;
 }

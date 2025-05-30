@@ -1,4 +1,5 @@
 import { storiesData } from "../assets";
+import type { IUserStory } from "../interface/IUserStory";
 
 function getRingClass(
   index: number,
@@ -15,10 +16,10 @@ function StoriesSection({
   onStoryClick,
 }: {
   onStoryClick: (
-    story: any,
+    story: IUserStory,
     bounds: DOMRect,
     index: number,
-    allStories: any[]
+    allStories: IUserStory[]
   ) => void;
 }) {
   return (
@@ -33,7 +34,7 @@ function StoriesSection({
             data-story-id={story.username}
             className="min-w-fit flex flex-col items-center gap-1 text-xs cursor-pointer"
             onClick={(e) => {
-              if (story.stories && story.stories?.length > 0) {
+              if (story?.stories && story?.stories?.length > 0) {
                 const rect = (
                   e.currentTarget as HTMLElement
                 ).getBoundingClientRect();
@@ -42,7 +43,7 @@ function StoriesSection({
             }}
           >
             <div className={`${ringClass} p-[1px] rounded-full inline-block`}>
-              <div className="bg-white rounded-full m-[0.125rem]">
+              <div className="bg-white p-[3px] rounded-full m-[0.125rem]">
                 <img
                   src={profilePic}
                   alt={username}

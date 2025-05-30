@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import TopProgressBar from "./TopProgressBar";
 import type { IUserStory } from "../interface/IUserStory";
-import { X } from "lucide-react";
+import { Star, X } from "lucide-react";
 
 function StoryViewer({
   story,
@@ -22,14 +22,21 @@ function StoryViewer({
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  if (!story || !bounds || !containerRect) return null;
+  if (
+    !story ||
+    !story?.stories ||
+    !story?.stories?.length ||
+    !bounds ||
+    !containerRect
+  )
+    return null;
 
   const startX = bounds.left - containerRect.left;
   const startY = bounds.top - containerRect.top;
 
   const handleNext = () => {
-    if (!story?.stories && story?.stories?.length < 1) return;
-    if (activeIndex < story.stories.length - 1) {
+    if (!story?.stories || story.stories.length < 1) return;
+    if (story.stories && activeIndex < story.stories.length - 1) {
       setActiveIndex((i) => i + 1);
     } else {
       setActiveIndex(0);
@@ -68,7 +75,7 @@ function StoryViewer({
       transition={{ duration: 0.1, ease: "easeInOut" }}
       className="absolute z-50 bg-black bg-opacity-90 flex flex-col  text-white"
       style={{
-        backgroundImage: `url(${story.stories[activeIndex].src})`,
+        backgroundImage: `url(${story?.stories?.[activeIndex]?.src ?? ""})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -80,14 +87,27 @@ function StoryViewer({
       />
       <div className="p-2 flex justify-between items-center">
         <div className="h-8 flex gap-2 items-center text-xs">
-          <img src={story.profilePic} className="h-full w-8 rounded-full" />
-          <div>
+          <img
+            src={story.profilePic}
+            className="h-full w-8 rounded-full object-cover"
+          />
+          <div className="flex gap-2">
             <p>{story.username}</p>
+            <span className="text-gray-400">
+              {story?.stories[activeIndex]?.time}
+            </span>
           </div>
         </div>
-        <button onClick={onClose} className="p-1 cursor-pointer">
-          <X />
-        </button>
+        <div className="flex gap-2 items-center">
+          {story.isClose && (
+            <div className="bg-green-500 rounded-full py-0.5 px-2">
+              <Star fill="#fff" strokeWidth={0} className="h-4 w-4" />
+            </div>
+          )}
+          <button onClick={onClose} className="p-1 cursor-pointer">
+            <X />
+          </button>
+        </div>
       </div>
       <div
         className="absolute top-16 left-0 w-1/2 h-full z-40"

@@ -13,21 +13,25 @@ const TopProgressBar = ({
   duration = 3000,
   onNext,
 }: Props) => {
-  const [widths, setWidths] = useState<number[]>(Array(total).fill(0));
+  const [widths, setWidths] = useState<number[]>(
+    Array.from({ length: total }, () => 0)
+  );
+
+  // Update widths when total changes
+  useEffect(() => {
+    setWidths(Array.from({ length: total }, () => 0));
+  }, [total]);
 
   useEffect(() => {
-    if (activeIndex === 0) {
-      setWidths(Array(total).fill(0));
-    } else {
-      const updated = widths.map((_, i) => {
-        if (i < activeIndex) return 100;
-        if (i === activeIndex) return 0;
-        return 0;
-      });
-      setWidths(updated);
-    }
-    console.log(total, activeIndex, widths);
+    const updated = Array.from({ length: total }, (_, i) => {
+      if (i < activeIndex) return 100;
+      if (i === activeIndex) return 0;
+      return 0;
+    });
+    setWidths(updated);
+  }, [activeIndex, total]);
 
+  useEffect(() => {
     const timer = setTimeout(() => {
       if (onNext) onNext();
     }, duration);
@@ -50,7 +54,7 @@ const TopProgressBar = ({
       clearTimeout(timer);
       cancelAnimationFrame(frame);
     };
-  }, [activeIndex]);
+  }, [activeIndex, duration, onNext]);
 
   return (
     <div className="w-full h-5 px-2 pt-5 flex gap-1 z-50">

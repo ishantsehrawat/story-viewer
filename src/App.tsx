@@ -49,7 +49,7 @@ function App() {
     story: IUserStory,
     bounds: DOMRect,
     index: number,
-    all: any[]
+    all: IUserStory[]
   ) => {
     setAllStories(all);
     setSelectedStory(story);
@@ -61,8 +61,10 @@ function App() {
     if (
       currentStoryIndex === null ||
       currentStoryIndex >= allStories.length - 1
-    )
+    ) {
+      onCloseStoryViewer();
       return;
+    }
     const nextIndex = currentStoryIndex + 1;
     const nextStory = allStories[nextIndex];
     const newRect = document
@@ -89,6 +91,12 @@ function App() {
       setStoryBounds(newRect as DOMRect);
       setCurrentStoryIndex(prevIndex);
     }
+  };
+
+  const onCloseStoryViewer = () => {
+    selectedStory.hasWatched = true;
+    setSelectedStory(null);
+    setStoryBounds(null);
   };
 
   return (
@@ -121,11 +129,7 @@ function App() {
               story={selectedStory}
               bounds={storyBounds}
               containerRect={containerRef.current.getBoundingClientRect()}
-              onClose={() => {
-                selectedStory.hasWatched = true;
-                setSelectedStory(null);
-                setStoryBounds(null);
-              }}
+              onClose={onCloseStoryViewer}
               onNextUser={handleNextUser}
               onPreviousUser={handlePreviousUser}
             />

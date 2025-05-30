@@ -1,103 +1,106 @@
 [
   {
-    "username": "Your Story",
-    "profilePic": "src/assets/profile-pic-1.jpg"
+    "username": "Your story",
+    "profilePic": "src/assets/profile-pic.jpg",
+    "stories": []
   },
   {
-    "username": "jane_smith",
+    "username": "ananya.sharma",
     "isClose": false,
     "hasWatched": false,
     "profilePic": "src/assets/profile-pic-1.jpg",
     "stories": [
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" }
+      { "src": "src/assets/story11.jpg", "time": "20s" },
+      { "src": "src/assets/story12.jpg", "time": "55s" },
+      { "src": "src/assets/story13.jpg", "time": "2min" }
     ]
   },
   {
-    "username": "michael_brown",
+    "username": "rajkumar",
     "isClose": false,
     "hasWatched": false,
-    "profilePic": "src/assets/profile-pic-1.jpg",
+    "profilePic": "src/assets/profile-pic-2.jpeg",
     "stories": [
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" }
+      { "src": "src/assets/story21.jpg", "time": "15s" },
+      { "src": "src/assets/story22.jpg", "time": "35s" },
+      { "src": "src/assets/story23.jpg", "time": "1min" },
+      { "src": "src/assets/story24.jpg", "time": "2min" },
+      { "src": "src/assets/story25.jpg", "time": "3min" },
+      { "src": "src/assets/story26.jpg", "time": "5min" }
     ]
   },
   {
-    "username": "emily_davis",
+    "username": "vivek123",
     "isClose": true,
     "hasWatched": false,
-    "profilePic": "src/assets/profile-pic-1.jpg",
+    "profilePic": "src/assets/profile-pic-5.jpeg",
     "stories": [
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" }
+      { "src": "src/assets/story31.jpg", "time": "30s" },
+      { "src": "src/assets/story32.jpg", "time": "2hr" }
     ]
   },
   {
-    "username": "chris_jones",
+    "username": "isha-dwivedi",
     "isClose": false,
     "hasWatched": false,
-    "profilePic": "src/assets/profile-pic-1.jpg",
-    "stories": [{ "src": "src/assets/story1.jpg" }]
-  },
-  {
-    "username": "sarah_wilson",
-    "isClose": false,
-    "hasWatched": false,
-    "profilePic": "src/assets/profile-pic-1.jpg",
+    "profilePic": "src/assets/profile-pic-3.jpeg",
     "stories": [
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" }
+      { "src": "src/assets/story41.jpg", "time": "45s" },
+      { "src": "src/assets/story42.jpg", "time": "2min" },
+      { "src": "src/assets/story43.jpg", "time": "4min" },
+      { "src": "src/assets/story44.jpg", "time": "6min" },
+      { "src": "src/assets/story45.jpg", "time": "9min" },
+      { "src": "src/assets/story46.jpg", "time": "13min" }
     ]
   },
   {
-    "username": "david_clark",
+    "username": "priya_gupta",
     "isClose": false,
     "hasWatched": false,
-    "profilePic": "src/assets/profile-pic-1.jpg",
+    "profilePic": "src/assets/profile-pic-4.jpeg",
     "stories": [
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" }
+      { "src": "src/assets/story51.jpg", "time": "10s" },
+      { "src": "src/assets/story52.jpg", "time": "40s" },
+      { "src": "src/assets/story53.jpg", "time": "1min" }
     ]
   },
   {
-    "username": "laura_martin",
+    "username": "arjun.verma",
     "isClose": false,
     "hasWatched": false,
-    "profilePic": "src/assets/profile-pic-1.jpg",
+    "profilePic": "src/assets/profile-pic-9.jpeg",
     "stories": [
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" }
+      { "src": "src/assets/story61.jpg", "time": "25s" },
+      { "src": "src/assets/story62.jpg", "time": "1min" }
     ]
   },
   {
-    "username": "kevin_white",
+    "username": "meera_singh",
     "isClose": false,
     "hasWatched": false,
-    "profilePic": "src/assets/profile-pic-1.jpg",
-    "stories": [{ "src": "src/assets/story1.jpg" }]
+    "profilePic": "src/assets/profile-pic-6.jpeg",
+    "stories": [
+      { "src": "src/assets/story71.jpg", "time": "2min" },
+      { "src": "src/assets/story72.jpg", "time": "5min" },
+      { "src": "src/assets/story73.jpg", "time": "10min" },
+      { "src": "src/assets/story74.jpg", "time": "15min" }
+    ]
   },
   {
-    "username": "olivia_harris",
+    "username": "rohit.chauhan",
     "isClose": false,
     "hasWatched": false,
-    "profilePic": "src/assets/profile-pic-1.jpg",
+    "profilePic": "src/assets/profile-pic-8.jpeg",
+    "stories": [{ "src": "src/assets/story81.jpg", "time": "30s" }]
+  },
+  {
+    "username": "aisha_khan",
+    "isClose": false,
+    "hasWatched": false,
+    "profilePic": "src/assets/profile-pic-10.jpg",
     "stories": [
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" },
-      { "src": "src/assets/story1.jpg" }
+      { "src": "src/assets/story91.jpg", "time": "1hr" },
+      { "src": "src/assets/story92.jpg", "time": "1hr" }
     ]
   }
 ]
