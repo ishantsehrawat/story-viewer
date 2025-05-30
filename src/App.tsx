@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Heart, MessageCircleMore } from "lucide-react";
-import { igLogo, logo } from "./assets";
+import { igLogo, logo, storiesData } from "./assets";
 import { Skeleton } from "./components";
 import StoriesSection from "./components/StoriesSection";
 import StoryViewer from "./components/StoryViewer";
 
 import "./App.css";
+import type { IUserStory } from "./interface/IUserStory";
 
 function LaunchPage({ fadeLaunch }: { fadeLaunch: boolean }) {
   return (
@@ -14,7 +15,7 @@ function LaunchPage({ fadeLaunch }: { fadeLaunch: boolean }) {
         fadeLaunch ? "opacity-0" : "opacity-100"
       } transition-opacity duration-1000`}
     >
-      <img className="h-20 w-20" src={logo} alt="instragram" />
+      <img className="h-20 w-20" src={logo} alt="instagram" />
     </div>
   );
 }
@@ -26,6 +27,10 @@ function App() {
 
   const [selectedStory, setSelectedStory] = useState<any>(null);
   const [storyBounds, setStoryBounds] = useState<DOMRect | null>(null);
+  const [currentStoryIndex, setCurrentStoryIndex] = useState<number | null>(
+    null
+  );
+  const [allStories, setAllStories] = useState<any[]>([]);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -37,15 +42,64 @@ function App() {
         setTimeout(() => setFadeHome(true), 100);
       }, 200);
     }, 300);
-
     return () => clearTimeout(timer);
   }, []);
+
+  const handleStoryClick = (
+    story: IUserStory,
+    bounds: DOMRect,
+    index: number,
+    all: any[]
+  ) => {
+    setAllStories(all);
+    setSelectedStory(story);
+    setStoryBounds(bounds);
+    setCurrentStoryIndex(index);
+  };
+
+  const handleNextUser = () => {
+    if (
+      currentStoryIndex === null ||
+      currentStoryIndex >= allStories.length - 1
+    )
+      return;
+    const nextIndex = currentStoryIndex + 1;
+    const nextStory = allStories[nextIndex];
+    const newRect = document
+      .querySelectorAll("[data-story-id]")
+      [nextIndex]?.getBoundingClientRect();
+    if (nextStory && newRect) {
+      setSelectedStory(nextStory);
+      setStoryBounds(newRect as DOMRect);
+      storiesData[currentStoryIndex].hasWatched = true;
+      setCurrentStoryIndex(nextIndex);
+    }
+  };
+
+  const handlePreviousUser = () => {
+    if (currentStoryIndex === null || currentStoryIndex <= 0) return;
+    const prevIndex = currentStoryIndex - 1;
+    const prevStory = allStories[prevIndex];
+    const newRect = document
+      .querySelectorAll("[data-story-id]")
+      [prevIndex]?.getBoundingClientRect();
+    if (prevStory && newRect) {
+      storiesData[currentStoryIndex].hasWatched = true;
+      setSelectedStory(prevStory);
+      setStoryBounds(newRect as DOMRect);
+      setCurrentStoryIndex(prevIndex);
+    }
+  };
 
   return (
     <div className="flex justify-center items-center h-[100dvh] w-full md:bg-neutral-950">
       <div
         ref={containerRef}
-        className="relative app-container md:bg-white h-[100dvh] md:h-[80dvh] w-[100dvw] md:w-[39.5dvh] md:rounded-4xl py-4 md:pt-12 overflow-y-scroll no-scrollbar"
+        className={`relative app-container md:bg-white h-[100dvh] md:h-[80dvh] w-[100dvw] md:w-[39.5dvh] md:rounded-4xl py-4 md:pt-12 ${
+          selectedStory && storyBounds && containerRef.current
+            ? "overflow-y-hidden"
+            : "overflow-y-scroll"
+        } no-scrollbar`}
       >
         <div
           className={`w-full h-full ${showHome ? "" : "hidden"} ${
@@ -59,12 +113,7 @@ function App() {
               <MessageCircleMore />
             </div>
           </div>
-          <StoriesSection
-            onStoryClick={(story, bounds) => {
-              setSelectedStory(story);
-              setStoryBounds(bounds);
-            }}
-          />
+          <StoriesSection onStoryClick={handleStoryClick} />
           <Skeleton />
 
           {selectedStory && storyBounds && containerRef.current && (
@@ -77,10 +126,11 @@ function App() {
                 setSelectedStory(null);
                 setStoryBounds(null);
               }}
+              onNextUser={handleNextUser}
+              onPreviousUser={handlePreviousUser}
             />
           )}
         </div>
-
         {!showHome && <LaunchPage fadeLaunch={fadeLaunch} />}
       </div>
     </div>

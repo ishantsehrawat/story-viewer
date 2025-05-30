@@ -14,7 +14,12 @@ function getRingClass(
 function StoriesSection({
   onStoryClick,
 }: {
-  onStoryClick: (story: any, bounds: DOMRect) => void;
+  onStoryClick: (
+    story: any,
+    bounds: DOMRect,
+    index: number,
+    allStories: any[]
+  ) => void;
 }) {
   return (
     <div className="flex px-2 py-4 gap-1 flex-nowrap overflow-x-scroll no-scrollbar">
@@ -25,12 +30,15 @@ function StoriesSection({
         return (
           <div
             key={index}
+            data-story-id={story.username}
             className="min-w-fit flex flex-col items-center gap-1 text-xs cursor-pointer"
             onClick={(e) => {
-              const rect = (
-                e.currentTarget as HTMLElement
-              ).getBoundingClientRect();
-              onStoryClick(story, rect);
+              if (story.stories && story.stories?.length > 0) {
+                const rect = (
+                  e.currentTarget as HTMLElement
+                ).getBoundingClientRect();
+                onStoryClick(story, rect, index, storiesData);
+              }
             }}
           >
             <div className={`${ringClass} p-[1px] rounded-full inline-block`}>
