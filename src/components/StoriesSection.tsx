@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { storiesData } from "../assets";
 import type { IUserStory } from "../interface/IUserStory";
+import { preloadImages } from "../utils/preloadImage";
 
 function getRingClass(
   index: number,
@@ -22,6 +24,14 @@ function StoriesSection({
     allStories: IUserStory[]
   ) => void;
 }) {
+  useEffect(() => {
+    const allStoryImages = storiesData
+      .flatMap((user) => user.stories)
+      .map((story) => story.src);
+
+    preloadImages(allStoryImages);
+  }, []);
+
   return (
     <div className="flex px-2 py-4 gap-1 flex-nowrap overflow-x-scroll no-scrollbar">
       {Array.isArray(storiesData) &&
