@@ -62,6 +62,9 @@ Ensure you are mocking `getBoundingClientRect` and static asset imports correctl
 ## 🏗 Development
 
 ```bash
+# Checkout to development branch
+git checkout story-viewer
+
 # Install dependencies
 npm install
 
@@ -80,7 +83,7 @@ Ensure `storiesData.json` exists in the `assets/` directory and is exported via 
 
 ## 🔗 Deployment
 
-[Live Demo](https://your-deployment-link.com)&#x20;
+[Live Demo](https://insta-story-viewer-12c3c.web.app/)&#x20;
 
 ## 🖼 Sample `storiesData.json`
 
